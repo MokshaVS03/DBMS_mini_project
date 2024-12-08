@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canteen Menu</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Canteen Menu</h1>
+    <div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/orders">My Orders</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h2>Today's Menu</h2>
+    <div class="menu-items">
+      <% menuItems.forEach(item => { %>
+        <div class="menu-item">
+          <img src="<%= item.imagePath %>" alt="<%= item.name %>" class="menu-image">
+          <h3><%= item.name %></h3>
+          <p>Category: <%= item.category %></p>
+          <p>Price: $<%= item.price %></p>
+          <form action="/orders" method="POST">
+            <input type="hidden" name="itemId" value="<%= item.item_id %>">
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" min="1" required>
+            <button type="submit">Order Now</button>
+          </form>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2023 Canteen Menu. All rights reserved.</p>
+  </footer>
+</body>
+</html>
